@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from v1 import basic_routes
+from v1 import basic_routes, processo_routes
 
 #pode colocar markdown
 description = """
@@ -23,4 +23,5 @@ app = FastAPI(openapi_url="/",
     },
     )
 
-app.include_router(basic_routes, prefix="/v1/basic")
+app.include_router(basic_routes, prefix="/v1")
+app.include_router(processo_routes, prefix='/v1/processos')

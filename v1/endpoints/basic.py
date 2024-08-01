@@ -11,19 +11,19 @@ import core.schemas.basic as schemas
 
 app = APIRouter()
 
-@app.get("/unidades", response_model=Page[schemas.Unidade], tags=['parametros_do_processo'])
+@app.get("/unidades", response_model=Page[schemas.Unidade], tags=['categorias'])
 def get_unidades():
 
     unidades = dao.lst_unidades()
     return paginate(unidades)
 
-@app.get("/processo/tipos", response_model=Page[schemas.TipoProcesso], tags=['parametros_do_processo'])
+@app.get("/processos/tipos", response_model=Page[schemas.TipoProcesso], tags=['categorias', 'processo'])
 def get_tipos_processo():
 
     tipos = dao.lst_tipos_processo()
     return paginate(tipos)
 
-@app.get("/documento/tipos", response_model=Page[schemas.TipoDocumento], tags=['parametros_do_processo'])
+@app.get("/documentos/tipos", response_model=Page[schemas.TipoDocumento], tags=['categorias'])
 def get_tipos_doc():
 
     tipos = dao.lst_tipos_documento()
