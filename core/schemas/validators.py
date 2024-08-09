@@ -1,9 +1,14 @@
 
 import re
+from typing import Union
 
 from core.exceptions.processo import DadosForaDoPadrao
 
+
 def s_n_to_bool(val:str)->bool:
+
+    if val is None:
+        return False
 
     val = str(val).lower().strip()
     if val == 's':
@@ -31,7 +36,7 @@ def regex_numero_processo(val:str)->str:
 
 def regex_data_dia_mes_ano(val:str)->str:
 
-    patt = r'^\d{2}\/\d{2}\/\d{4}$'
+    patt = r'^\d{2}\/\d{2}\/\d{4}'
     haystack = str(val)
     needle = re.search(patt, haystack)
     if needle is None:
@@ -47,3 +52,10 @@ def regex_link_web(val:str)->str:
     if needle is None:
         raise DadosForaDoPadrao(500, f'Link fora do padrão: {val}')
     return needle.group()
+
+
+def none_to_string(val:Union[str, None])->str:
+
+    if val is None:
+        val = ''
+    return str(val)

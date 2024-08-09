@@ -6,7 +6,7 @@ from typing import List
 
 import core.dao.processos as dao
 import core.schemas.processos as schemas
-from core.parsers.processos import parse_resumo_processo
+from core.parsers.processos import parse_resumo_processo, parse_relatorio_processo
 
 app = APIRouter()
 
@@ -24,3 +24,12 @@ def get_resumo_processo(num_processo:str):
     dados_processo = dao.get_resumo_processo(num_processo)
     resumo = parse_resumo_processo(dados_processo)
     return resumo
+
+
+@app.get('/relatorio', response_model=schemas.RelatorioProcesso, tags=['processo'])
+def get_relatorio_processo(num_processo:str):
+
+    dados_processo = dao.get_relatorio_processo(num_processo)
+    relatorio = parse_relatorio_processo(dados_processo)
+
+    return relatorio
