@@ -16,6 +16,15 @@ def regex_numero_processo(val:str)->str:
         raise DadosForaDoPadrao(500, f'Número processo fora do padrão: {val}')
     return needle.group()
 
+def regex_numero_doc(val:str)->str:
+
+    patt = '\d{9}'
+    haystack = str(val)
+    needle = re.search(patt, haystack)
+    if needle is None:
+        raise DadosForaDoPadrao(500, f'Número do documento fora do padrão: {val}')
+    return needle.group()
+
 def regex_data_dia_mes_ano(val:str)->str:
 
     patt = r'^\d{2}\/\d{2}\/\d{4}'

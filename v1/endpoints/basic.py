@@ -24,7 +24,7 @@ def get_tipos_processo():
     tipos = dao.lst_tipos_processo()
     return paginate(tipos)
 
-@app.get("/documentos/tipos", response_model=Page[schemas.TipoDocumento], tags=['categorias'])
+@app.get("/documentos/tipos", response_model=Page[schemas.TipoDocumento], tags=['categorias', 'documento'])
 def get_tipos_doc():
 
     tipos = dao.lst_tipos_documento()

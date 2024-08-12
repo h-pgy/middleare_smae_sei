@@ -40,12 +40,16 @@ class TipoDocumento(BaseModel):
                             'internos_e_externos',
                             'internos',
                             'externos',
-                            'formularios'
+                            'formularios',
+                            'nao_informado'
                         ]
     tipo : str
 
     @validator('aplicabilidade', pre=True, always=True)
     def padronizar_aplicabilidade(cls, value, values)->str:
+
+        if value is None:
+            return 'nao_informado'
 
         val = str(value).lower().strip()
 
@@ -70,7 +74,7 @@ class TipoDocumento(BaseModel):
         try:
             return mapper[val]
         except KeyError:
-            raise DadosForaDoPadrao(f'Valor para aplicabilidade do doc. fora do padrão: {val}. Opções: {mapper}')
+            raise DadosForaDoPadrao(500, f'Valor para aplicabilidade do doc. fora do padrão: {val}. Opções: {mapper}')
 
 
 
