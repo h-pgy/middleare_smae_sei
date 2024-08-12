@@ -1,6 +1,15 @@
 from pydantic import BaseModel, validator
 from typing import Literal
 from core.exceptions.basic import DadosForaDoPadrao
+from .validators import regex_link_web
+
+class Link(BaseModel):
+
+    link : str
+
+    #validators
+    _link_processo = validator('link',
+                               allow_reuse=True, pre=True, always=True)(regex_link_web)
 
 class Unidade(BaseModel):
 

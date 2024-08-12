@@ -6,11 +6,12 @@ from typing import List
 
 import core.dao.processos as dao
 import core.schemas.processos as schemas
+import core.schemas.basic as basic_schemas
 from core.parsers.processos import parse_resumo_processo, parse_relatorio_processo
 
 app = APIRouter()
 
-@app.get("/link/", response_model=schemas.LinkProcesso, tags=['processo'])
+@app.get("/link/", response_model=basic_schemas.Link, tags=['processo'])
 def get_link_processo(num_processo:str):
 
     link_processo = dao.get_link_processo(num_processo)

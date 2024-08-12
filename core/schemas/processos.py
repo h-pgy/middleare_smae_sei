@@ -5,13 +5,6 @@ from .validators import (regex_numero_processo, regex_data_dia_mes_ano,
                          regex_link_web, none_to_string)
 from .basic import Unidade, Usuario
 
-class LinkProcesso(BaseModel):
-
-    link : str
-
-    #validators
-    _link_processo = validator('link',
-                               allow_reuse=True, pre=True, always=True)(regex_link_web)
 
 class Assunto(BaseModel):
 
