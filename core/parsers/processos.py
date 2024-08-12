@@ -30,7 +30,8 @@ def parse_usuario_andamento(andamento:dict)->str:
 
     user = andamento['usuario']
     parsed = {
-            'nome' :user['nome'],
+            'id' : user['id_usuario'],
+            'nome' : user['nome'],
             'rf' : user['sigla']
               }
     

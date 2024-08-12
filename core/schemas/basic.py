@@ -25,6 +25,7 @@ class Unidade(BaseModel):
     
 class Usuario(BaseModel):
 
+    id : str
     nome : str
     rf : str
     

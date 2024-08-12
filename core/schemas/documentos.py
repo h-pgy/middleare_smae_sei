@@ -1,7 +1,7 @@
 from pydantic import BaseModel, validator
-from typing import Literal
+from typing import List
 
-from .basic import TipoDocumento
+from .basic import TipoDocumento, Unidade, Usuario
 from .validators import (regex_numero_processo, regex_data_dia_mes_ano, regex_numero_doc, 
                          regex_link_web, none_to_string)
 
@@ -26,4 +26,25 @@ class ResumoDocumento(BaseModel):
     _data_criacao = validator('data_criacao', 
                             allow_reuse=True, pre=True, always=True)(regex_data_dia_mes_ano)
     _nome = validator('nome', 
+                            allow_reuse=True, pre=True, always=True)(none_to_string)
+    
+
+class AssinaturaDocumento(BaseModel):
+
+    usuario : Usuario
+    cargo_funcao : str
+    data : str
+
+    #validators
+    _data = validator('data', 
+                        allow_reuse=True, pre=True, always=True)(regex_data_dia_mes_ano)
+
+class RelatorioDocumento(ResumoDocumento):
+
+    descricao : str
+    unidade_elaborado : Unidade
+    assinaturas : List[AssinaturaDocumento]
+
+
+    _descricao = validator('descricao', 
                             allow_reuse=True, pre=True, always=True)(none_to_string)

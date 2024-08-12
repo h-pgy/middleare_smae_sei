@@ -7,7 +7,8 @@ from typing import List
 import core.dao.documentos as dao
 import core.schemas.documentos as schemas
 import core.schemas.basic as basic_schemas
-from core.parsers.documentos import parse_link_documento, parse_resumo_documento
+from core.parsers.documentos import (parse_link_documento, parse_resumo_documento,
+                                    parse_relatorio_documento)
 
 app = APIRouter()
 
@@ -19,7 +20,6 @@ def get_link_doc(num_doc:str):
     return parse_link_documento(dados_doc)
 
 
-app = add_pagination(app)
 
 @app.get('/resumo', response_model=schemas.ResumoDocumento, tags=['documento'])
 def get_resumo_doc(num_doc:str):
@@ -27,3 +27,14 @@ def get_resumo_doc(num_doc:str):
     dados_doc = dao.get_resumo_documento(num_doc)
     
     return parse_resumo_documento(dados_doc)
+
+
+@app.get('/relatorio', response_model=schemas.RelatorioDocumento, tags=['documento'])
+def get_resumo_doc(num_doc:str):
+
+    dados_doc = dao.get_relatorio_documento(num_doc)
+    
+    return parse_relatorio_documento(dados_doc)
+
+
+app = add_pagination(app)
