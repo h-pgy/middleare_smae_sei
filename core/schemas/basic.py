@@ -1,5 +1,6 @@
 from pydantic import BaseModel, validator
 from typing import Literal
+from core.exceptions.basic import DadosForaDoPadrao
 
 class Unidade(BaseModel):
 
@@ -25,14 +26,14 @@ class TipoProcesso(BaseModel):
 
 class TipoDocumento(BaseModel):
 
-    id_serie : str
-    nome : str
+    id : str
     aplicabilidade : Literal[
                             'internos_e_externos',
                             'internos',
                             'externos',
                             'formularios'
                         ]
+    tipo : str
 
     @validator('aplicabilidade', pre=True, always=True)
     def padronizar_aplicabilidade(cls, value, values)->str:
@@ -60,7 +61,7 @@ class TipoDocumento(BaseModel):
         try:
             return mapper[val]
         except KeyError:
-            raise ValueError(f'Valor fora do padrão: {val}. Opções: {mapper}')
+            raise DadosForaDoPadrao(f'Valor para aplicabilidade do doc. fora do padrão: {val}. Opções: {mapper}')
 
 
 

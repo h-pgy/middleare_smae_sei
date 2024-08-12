@@ -26,3 +26,12 @@ def parser_unidade(unidade:dict)->dict:
     }
 
     return parsed
+
+
+def parse_tipo_doc(tipo_doc:dict)->dict:
+
+    return {
+        'id' : tipo_doc['id_serie'],
+        'aplicabilidade' : tipo_doc['aplicabilidade'],
+        'tipo' : tipo_doc['nome']
+    }

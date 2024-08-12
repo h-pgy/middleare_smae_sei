@@ -16,7 +16,6 @@ def zeep_obj_to_dict(obj: object, snake_case=True)->OrderedDict:
     for key, val in vals.items():
         if type(val) not in TIPOS_ACEITOS and val is not None:
             #checando se o objeto é um array do zeep
-            print(str(type(val)))
             if 'zeep.objects.Array' not in str(type(val)):
                 vals[key] = zeep_obj_to_dict(val)
             else:

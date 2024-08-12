@@ -7,7 +7,7 @@ from typing import List
 
 import core.dao.basic as dao
 import core.schemas.basic as schemas
-from core.parsers.basic import parser_unidade
+from core.parsers.basic import parser_unidade, parse_tipo_doc
 
 app = APIRouter()
 
@@ -28,7 +28,10 @@ def get_tipos_processo():
 def get_tipos_doc():
 
     tipos = dao.lst_tipos_documento()
-    return paginate(tipos)
+
+    tipos_parsed = [parse_tipo_doc(tipo) for tipo in tipos]
+
+    return paginate(tipos_parsed)
 
 app = add_pagination(app)
 
