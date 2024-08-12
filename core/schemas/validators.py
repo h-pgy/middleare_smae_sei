@@ -2,26 +2,8 @@
 import re
 from typing import Union
 
-from core.exceptions.processo import DadosForaDoPadrao
+from core.exceptions.basic import DadosForaDoPadrao
 
-
-def s_n_to_bool(val:str)->bool:
-
-    if val is None:
-        return False
-
-    val = str(val).lower().strip()
-    if val == 's':
-        return True
-    elif val == 'n':
-        return False
-    #casos em que ja esta booleano
-    elif val == 'false':
-        return False
-    elif val == 'true':
-        return True
-    else:
-        raise ValueError(f'Unexpected S/N val: {val}. Type: {type(val)}')
     
 
 def regex_numero_processo(val:str)->str:

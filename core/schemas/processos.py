@@ -1,7 +1,7 @@
 from pydantic import BaseModel, validator, ConfigDict
 from typing import Literal, List, Optional
 
-from .validators import (s_n_to_bool, regex_numero_processo, regex_data_dia_mes_ano, 
+from .validators import (regex_numero_processo, regex_data_dia_mes_ano, 
                          regex_link_web, none_to_string)
 from .basic import Unidade, Usuario
 

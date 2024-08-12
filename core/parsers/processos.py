@@ -1,10 +1,8 @@
 from core.utils.string import camel_to_snake_case
-
+from .basic import parser_unidade
 from typing import Union
 
 def parse_resumo_processo(dados_processo:dict)->dict:
-
-    print(dados_processo)
 
     parsed = {
     'numero_processo' : dados_processo['procedimento_formatado'],
@@ -24,7 +22,9 @@ def parse_unidade_andamento(andamento:dict)->dict:
     unidade = {camel_to_snake_case(key) : value 
               for key, value in dados_unidade.items()}
     
-    return unidade
+    parsed = parser_unidade(unidade)
+
+    return parsed
 
 def parse_usuario_andamento(andamento:dict)->str:
 

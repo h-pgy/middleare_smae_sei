@@ -16,7 +16,6 @@ def get_link_processo(num_processo:str):
     link_processo = dao.get_link_processo(num_processo)
     return {'link' : link_processo}
 
-app = add_pagination(app)
 
 @app.get('/resumo', response_model = schemas.ResumoProcesso, tags=['processo'])
 def get_resumo_processo(num_processo:str):
@@ -33,3 +32,7 @@ def get_relatorio_processo(num_processo:str):
     relatorio = parse_relatorio_processo(dados_processo)
 
     return relatorio
+
+
+
+app = add_pagination(app)

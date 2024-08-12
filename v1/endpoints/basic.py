@@ -7,7 +7,7 @@ from typing import List
 
 import core.dao.basic as dao
 import core.schemas.basic as schemas
-
+from core.parsers.basic import parser_unidade
 
 app = APIRouter()
 
@@ -15,7 +15,8 @@ app = APIRouter()
 def get_unidades():
 
     unidades = dao.lst_unidades()
-    return paginate(unidades)
+    unidades_parsed = [parser_unidade(unidade) for unidade in unidades]
+    return paginate(unidades_parsed)
 
 @app.get("/processos/tipos", response_model=Page[schemas.TipoProcesso], tags=['categorias', 'processo'])
 def get_tipos_processo():
