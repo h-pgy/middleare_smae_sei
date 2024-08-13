@@ -9,7 +9,7 @@ def lst_unidades(client)->list:
 @set_client
 def lst_tipos_processo(client)->list:
 
-    return client('listar_tipos_procedimento', id_unidade=None, id_serie=None)
+    return client('listar_tipos_procedimento', id_unidade=None, id_serie=None, sin_individual=None)
 
 
 @set_client
